@@ -8,8 +8,34 @@
 import SwiftUI
 
 struct LargeAttendeeView: View {
+    @State var attendeees = AttendeeModel().getAttendees()
+    @State var columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 15) {
+                    ForEach(attendeees) { attendee in
+                        VStack {
+                            HStack {
+                                Text(attendee.lastName)
+                                Text(attendee.firstName)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                            }
+                            HStack {
+                                Text(attendee.email)
+                                Spacer()
+                            }
+                            .foregroundStyle(.secondary)
+                            .font(.caption)
+                        }
+                    }
+                }
+                .padding()
+            }
+            .navigationTitle("Event Attendees")
+        }
     }
 }
 

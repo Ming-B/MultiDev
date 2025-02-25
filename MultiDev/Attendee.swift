@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Attendee : Identifiable{
+    var id: UUID
+    var firstName: String
+    var lastName: String
+    var email: String
+    
+}

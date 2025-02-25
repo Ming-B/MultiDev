@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var attendees = AttendeeModel().getAttendees()
+    @State var showConfirmation = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List(attendees) { attendee in
+                VStack {
+                    HStack {
+                        Text(attendee.lastName)
+                        Text(attendee.firstName)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(attendee.email)
+                        Spacer()
+                    }
+                    .foregroundStyle(.secondary)
+                    .font(.caption)
+                }
+            }
+            .navigationTitle("Event Attendees")
         }
-        .padding()
+        
     }
 }
 
