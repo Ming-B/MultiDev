@@ -2,7 +2,7 @@
 //  LargeAttendeeView.swift
 //  MultiDev
 //
-//  Created by Brian Krupp on 2/24/25.
+//  Created by Ming Bian on 2/24/25.
 //
 
 import SwiftUI
@@ -10,6 +10,20 @@ import SwiftUI
 struct LargeAttendeeView: View {
     @State var attendeees = AttendeeModel().getAttendees()
     @State var columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
+    let portraitColumns = [GridItem(.flexible()), GridItem(.flexible())]
+    let landscapeColumns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
+    
+
+    func updateLayout() {
+        if(UIDevice.current.orientation.isLandscape){
+            columns = landscapeColumns
+        }
+        else{
+            columns = portraitColumns
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -35,6 +49,13 @@ struct LargeAttendeeView: View {
                 .padding()
             }
             .navigationTitle("Event Attendees")
+        }
+        .onAppear {
+            updateLayout()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            updateLayout()
+            
         }
     }
 }

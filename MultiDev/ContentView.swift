@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  MultiDev
 //
-//  Created by Brian Krupp on 2/24/25.
+//  Created by Ming Bian on 2/24/25.
 //
 
 import SwiftUI
@@ -29,6 +29,22 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Event Attendees")
+            //toolbar with clear button that makes sure a confirmation dialog is shown when trying to delete list of attendees
+            .toolbar {
+                Button("Clear", systemImage: "checkmark") {
+                    showConfirmation = true
+                        
+                }
+                .confirmationDialog("Confirm Delete?", isPresented: $showConfirmation) {
+                    Button("Confirm all attendees?", role: .destructive) {
+                        attendees = []
+                        showConfirmation = false
+                    }
+                    Button("Cancel", role: .cancel) {
+                        showConfirmation = false
+                    }
+                }
+            }
         }
         
     }

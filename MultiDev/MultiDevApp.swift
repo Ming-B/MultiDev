@@ -11,7 +11,14 @@ import SwiftUI
 struct MultiDevApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                LargeAttendeeView()
+            }
+            else {
+                ContentView()
+            }
+            //call the necessary view here for ipad, iphone, etc
+            
         }
     }
 }
