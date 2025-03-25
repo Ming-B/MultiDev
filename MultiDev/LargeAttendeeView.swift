@@ -15,14 +15,15 @@ struct LargeAttendeeView: View {
     let landscapeColumns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     
-
     func updateLayout() {
-        if UIDevice.current.orientation.isLandscape {
+        if (UIDevice.current.orientation.isLandscape) {
             columns = landscapeColumns
         }
-        else{
+        else {
             columns = portraitColumns
         }
+
+        
     }
     
     var body: some View {
