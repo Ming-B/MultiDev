@@ -14,6 +14,7 @@ struct MultiDevApp: App {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 LargeAttendeeView()
             }
+                
             else {
                 ContentView()
             }

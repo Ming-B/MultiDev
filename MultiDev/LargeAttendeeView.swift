@@ -17,7 +17,7 @@ struct LargeAttendeeView: View {
     
 
     func updateLayout() {
-        if(UIDevice.current.orientation.isLandscape){
+        if UIDevice.current.orientation.isLandscape {
             columns = landscapeColumns
         }
         else{
