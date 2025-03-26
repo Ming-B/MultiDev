@@ -33,9 +33,7 @@ struct ContentView: View {
             .toolbar {
                 Button("Clear", systemImage: "checkmark") {
                     showConfirmation = true
-                        
                 }
-                //attach confirmationDialog to button because iPad is a larger screen
                 .confirmationDialog("Confirm Delete?", isPresented: $showConfirmation) {
                     Button("Confirm all attendees?", role: .destructive) {
                         attendees = []
